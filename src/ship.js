@@ -3,20 +3,19 @@ class Ship {
         this.size = size
         this.hit = 0
         this.sunk = false
+        this.coords = null
+        this.rotation = "vertical"
     }
 
     hit() {
-        if (shipIsHit) {
-            this.hit++
-        }
-        return 
+        this.hit++
     }
 
     isSunk() {
         if (this.hit === this.size) {
             this.sunk = true
         }
-        return 
+        return this.sunk
     }
 }
 
@@ -46,6 +45,10 @@ class Gameboard {
         const Destroyer = new Ship(2)
         return {Carrier, Battleship, Cruiser, Submarine, Destroyer}
     }
+
+    placeShip(ship, x, y) {
+        ship.coords = [x, y]
+    }
     
 }
 
@@ -53,6 +56,7 @@ let gameboard = new Gameboard
 gameboard.board["J"][4] = "jap"
 
 
-gameboard.ships["Submarine"].sunk = true
+gameboard.placeShip(gameboard.ships["Carrier"], "B", 2)
 
-console.log(gameboard.ships)
+console.log(gameboard)
+console.log(gameboard.ships["Carrier"].coords)
