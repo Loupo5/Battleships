@@ -23,6 +23,7 @@ class Ship {
 class Gameboard {
     constructor() {
         this.board = this.#loadBoard()
+        this.ships = this.#loadShips()
     }
     #loadBoard() {
         let board = {}
@@ -36,10 +37,22 @@ class Gameboard {
         }
         return board
     }
+
+    #loadShips() {
+        const Carrier = new Ship(5)
+        const Battleship = new Ship(4)
+        const Cruiser = new Ship(3)
+        const Submarine = new Ship(3)
+        const Destroyer = new Ship(2)
+        return {Carrier, Battleship, Cruiser, Submarine, Destroyer}
+    }
     
 }
 
 let gameboard = new Gameboard
 gameboard.board["J"][4] = "jap"
 
-console.log(gameboard.board)
+
+gameboard.ships["Submarine"].sunk = true
+
+console.log(gameboard.ships)
