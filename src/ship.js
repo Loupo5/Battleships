@@ -47,7 +47,26 @@ class Gameboard {
     }
 
     placeShip(ship, x, y) {
+        if (x < "A" || x > "J") {
+            throw new Error("Out of bound coordinates")
+        }
+        if (y < 1 || y > 10) {
+            throw new Error("Out of bound coordinates")
+        }
+        if (ship.rotation === "vertical") {
+            if (y - ship.size < 1) {
+                throw new Error("Out of bound coordinates")
+            }
+        }
+        if (ship.rotation === "horizontal") {
+            const column = x.charCodeAt(0) - "A".charCodeAt(0) + 1
+            if (column + ship.size > 10) {
+                throw new Error("Out of bound coordinates")
+            }
+        }
+
         ship.coords = [x, y]
+
     }
     
 }
@@ -56,7 +75,8 @@ let gameboard = new Gameboard
 gameboard.board["J"][4] = "jap"
 
 
-gameboard.placeShip(gameboard.ships["Carrier"], "B", 2)
 
 console.log(gameboard)
 console.log(gameboard.ships["Carrier"].coords)
+
+export { Gameboard }
