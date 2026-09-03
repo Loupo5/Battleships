@@ -6,7 +6,10 @@ class Ship {
     }
 
     hit() {
-
+        if (shipIsHit) {
+            this.hit++
+        }
+        return 
     }
 
     isSunk() {
@@ -16,3 +19,27 @@ class Ship {
         return 
     }
 }
+
+class Gameboard {
+    constructor() {
+        this.board = this.#loadBoard()
+    }
+    #loadBoard() {
+        let board = {}
+        const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+
+        for (let column of columns) {
+            board[column] = {}
+            for (let row=1; row<=10; row++) {
+                board[column][row] = null
+            }
+        }
+        return board
+    }
+    
+}
+
+let gameboard = new Gameboard
+gameboard.board["J"][4] = "jap"
+
+console.log(gameboard.board)
