@@ -1,5 +1,12 @@
-import { Gameboard } from "./ship.js"
-let gameboard = new Gameboard
+import { Gameboard, Ship } from "./ship.js"
+const gameboard = new Gameboard
+
+test("ship rotate() correctly changes its rotation", () => {
+    const ship3 = new Ship(3)
+    ship3.rotation = "H"
+    ship3.rotate()
+    expect(ship3.rotation).toBe("V")
+})
 
 describe("placeShip() correctly checks the bounds of the board", () => {
     test("checks for out of bound input", () => {

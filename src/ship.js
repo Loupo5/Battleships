@@ -17,6 +17,12 @@ class Ship {
         }
         return this.sunk
     }
+    rotate() {
+        if (this.rotation === "V") {
+            this.rotation = "H"
+            return 
+        } this.rotation = "V"
+    }
 }
 
 class Gameboard {
@@ -45,6 +51,7 @@ class Gameboard {
         const Destroyer = new Ship(2)
         return {Carrier, Battleship, Cruiser, Submarine, Destroyer}
     }
+
 
     placeShip(ship, x, y) {
         if (x < "A" || x > "J") {
@@ -79,4 +86,4 @@ gameboard.board["J"][4] = "jap"
 console.log(gameboard)
 console.log(gameboard.ships["Carrier"].coords)
 
-export { Gameboard }
+export { Gameboard, Ship }
