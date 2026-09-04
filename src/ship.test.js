@@ -30,7 +30,20 @@ describe("placeShip() correctly checks the bounds of the board", () => {
         gameboard.placeShip(gameboard.ships["Cruiser"], "D", 5)
         expect(gameboard.ships["Cruiser"].coords).toEqual(["D", 5])
     })
+    test("gameboard locations change to the ship placed", () => {
+        gameboard.ships["Battleship"].rotation = "V"
+        gameboard.placeShip(gameboard.ships["Battleship"], "E", 6)
+        expect(gameboard.board["E"][6]).toEqual(gameboard.ships["Battleship"])
+        expect(gameboard.board["E"][5]).toEqual(gameboard.ships["Battleship"])
+        expect(gameboard.board["E"][4]).toEqual(gameboard.ships["Battleship"])
+        expect(gameboard.board["E"][3]).toEqual(gameboard.ships["Battleship"])
+    })
+})
 
+describe("receiveAttack() increments hit() of ship", () => {
+    test("if no ship at given coords, nothing happens", () => {
+        receiveAttack("B", 4)
+    })
 })
 
 

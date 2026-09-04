@@ -73,6 +73,23 @@ class Gameboard {
         }
 
         ship.coords = [x, y]
+
+        for (let i=0; i<ship.size; i++) {
+            if (ship.rotation === "H") {
+                const column = String.fromCharCode(x.charCodeAt(0) + i)
+                this.board[column][y] = ship
+            } else {
+                this.board[x][y - i] = ship
+            }
+        }
+    }
+    receiveAttack(x, y) {
+        if (x < "A" || x > "J") {
+            throw new Error("Out of bound coordinates")
+        }
+        if (y < 1 || y > 10) {
+            throw new Error("Out of bound coordinates")
+        }
     }
     
 }
