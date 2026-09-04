@@ -4,7 +4,7 @@ class Ship {
         this.hit = 0
         this.sunk = false
         this.coords = null
-        this.rotation = "vertical"
+        this.rotation = "V"
     }
 
     hit() {
@@ -53,14 +53,14 @@ class Gameboard {
         if (y < 1 || y > 10) {
             throw new Error("Out of bound coordinates")
         }
-        if (ship.rotation === "vertical") {
-            if (y - ship.size < 1) {
+        if (ship.rotation === "V") {
+            if (y - ship.size + 1 < 1) {
                 throw new Error("Out of bound coordinates")
             }
         }
-        if (ship.rotation === "horizontal") {
+        if (ship.rotation === "H") {
             const column = x.charCodeAt(0) - "A".charCodeAt(0) + 1
-            if (column + ship.size > 10) {
+            if (column + ship.size - 1 > 10) {
                 throw new Error("Out of bound coordinates")
             }
         }
