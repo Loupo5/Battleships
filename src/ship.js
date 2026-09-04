@@ -1,18 +1,18 @@
 class Ship {
     constructor(size) {
         this.size = size
-        this.hit = 0
+        this.hits = 0
         this.sunk = false
         this.coords = null
         this.rotation = "V"
     }
 
     hit() {
-        this.hit++
+        this.hits++
     }
 
     isSunk() {
-        if (this.hit === this.size) {
+        if (this.hits === this.size) {
             this.sunk = true
         }
         return this.sunk
@@ -90,15 +90,18 @@ class Gameboard {
         if (y < 1 || y > 10) {
             throw new Error("Out of bound coordinates")
         }
+        if (this.board[x][y] !== null) {
+            const ship = this.board[x][y]
+            ship.hit()
+        }
     }
     
 }
 
 let gameboard = new Gameboard
-gameboard.board["J"][4] = "jap"
 
 
-
+gameboard.placeShip(gameboard.ships["Cruiser"], "F", 6)
 console.log(gameboard)
 console.log(gameboard.ships["Carrier"].coords)
 

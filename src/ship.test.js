@@ -41,8 +41,11 @@ describe("placeShip() correctly checks the bounds of the board", () => {
 })
 
 describe("receiveAttack() increments hit() of ship", () => {
-    test("if no ship at given coords, nothing happens", () => {
-        receiveAttack("B", 4)
+    gameboard.placeShip(gameboard.ships["Cruiser"], "B", 7)
+    gameboard.receiveAttack("B", 6)
+    gameboard.receiveAttack("B", 5)
+    test("correctly finds the ship and increases this.hits", () => {
+        expect(gameboard.ships["Cruiser"].hits).toBe(2)
     })
 })
 
