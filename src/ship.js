@@ -90,9 +90,13 @@ class Gameboard {
         if (y < 1 || y > 10) {
             throw new Error("Out of bound coordinates")
         }
-        if (this.board[x][y] !== null) {
+
+        if (typeof this.board[x][y] === "object" 
+            && this.board[x][y] !== null) {
             const ship = this.board[x][y]
             ship.hit()
+        } else {
+            this.board[x][y] = "attacked"
         }
     }
     

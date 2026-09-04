@@ -47,6 +47,10 @@ describe("receiveAttack() increments hit() of ship", () => {
     test("correctly finds the ship and increases this.hits", () => {
         expect(gameboard.ships["Cruiser"].hits).toBe(2)
     })
+    test("if no ship at given coords, mark the coords as 'attacked'", () => {
+        gameboard.receiveAttack("H", 10)
+        expect(gameboard.board["H"][10]).toBe("attacked")
+    })
 })
 
 
