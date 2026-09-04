@@ -26,6 +26,10 @@ describe("placeShip() correctly checks the bounds of the board", () => {
             gameboard.placeShip(gameboard.ships["Battleship"], "H", 7)
         }).toThrow()
     })
+    test("places ship at given coordinates", () => {
+        gameboard.placeShip(gameboard.ships["Cruiser"], "D", 5)
+        expect(gameboard.ships["Cruiser"].coords).toEqual(["D", 5])
+    })
 
 })
 
