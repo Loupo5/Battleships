@@ -83,6 +83,9 @@ class Gameboard {
             }
         }
     }
+    allShipsSunk() {
+        return Object.values(this.ships).every((ship) => ship.sunk === true)
+    }
     receiveAttack(x, y) {
         if (x < "A" || x > "J") {
             throw new Error("Out of bound coordinates")
@@ -90,13 +93,18 @@ class Gameboard {
         if (y < 1 || y > 10) {
             throw new Error("Out of bound coordinates")
         }
+        if (this.board[x][y] === "X") {
+            return 
+        }
 
         if (typeof this.board[x][y] === "object" 
             && this.board[x][y] !== null) {
             const ship = this.board[x][y]
             ship.hit()
+            ship.isSunk()
+            this.board[x][y] = "X"
         } else {
-            this.board[x][y] = "attacked"
+            this.board[x][y] = "X"
         }
     }
     
