@@ -119,4 +119,8 @@ class Gameboard {
     }
 }
 
+const gameboard = new Gameboard()
+const column = Object.values(gameboard.board)
+console.log(column)
+
 export { Gameboard, Ship, Player }

@@ -1,9 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background: blue;
 }
 
 .board {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+
     height: 200px;
     width: 200px;
     background-color: white;
+    
+}
+
+.column {
+    display: grid;
+    grid-template-rows: repeat(10, 1fr);
+}
+
+.cell:nth-child(3n) {
+    background-color: black;
 }
