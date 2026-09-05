@@ -1,3 +1,11 @@
+class Player {
+    constructor(name, gameboard) {
+        this.name = name
+        this.gameboard = gameboard
+    }
+}
+
+
 class Ship {
     constructor(size) {
         this.size = size
@@ -83,9 +91,11 @@ class Gameboard {
             }
         }
     }
+
     allShipsSunk() {
         return Object.values(this.ships).every((ship) => ship.sunk === true)
     }
+
     receiveAttack(x, y) {
         if (x < "A" || x > "J") {
             throw new Error("Out of bound coordinates")
@@ -117,4 +127,4 @@ gameboard.placeShip(gameboard.ships["Cruiser"], "F", 6)
 console.log(gameboard)
 console.log(gameboard.ships["Carrier"].coords)
 
-export { Gameboard, Ship }
+export { Gameboard, Ship, Player }
