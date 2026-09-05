@@ -117,14 +117,6 @@ class Gameboard {
             this.board[x][y] = "X"
         }
     }
-    
 }
-
-let gameboard = new Gameboard
-
-
-gameboard.placeShip(gameboard.ships["Cruiser"], "F", 6)
-console.log(gameboard)
-console.log(gameboard.ships["Carrier"].coords)
 
 export { Gameboard, Ship, Player }

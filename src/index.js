@@ -1,3 +1,4 @@
 import "./style.css"
+import { renderBoard, player1 } from "./dom.js"
 
-console.log("HELLO")
+renderBoard(player1.gameboard)
