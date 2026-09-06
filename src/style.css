@@ -5,24 +5,30 @@
 }
 
 body {
-    background: blue;
+    background: lightskyblue;
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .board {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
 
-    height: 200px;
-    width: 200px;
+    height: 350px;
+    width: 350px;
     background-color: white;
-    
 }
-
+.board.player-board {
+    margin-right: 200px;
+}
 .column {
     display: grid;
     grid-template-rows: repeat(10, 1fr);
 }
 
-.cell:nth-child(3n) {
+.cell:nth-child() {
     background-color: black;
 }

@@ -20,7 +20,11 @@ function renderBoard(gameboard, myClass) {
     }
     body.appendChild(board)
 }
+    
+renderBoard(player1.gameboard, "player-board")
+renderBoard(player2.gameboard, "npc-board")
 
-console.log(renderBoard(player1.gameboard))
+
+
 
 export { renderBoard, player1 }
