@@ -1,3 +1,3 @@
 import "./style.css"
-import { renderBoard, player1 } from "./dom.js"
+import { renderBoard, player } from "./dom.js"
 
