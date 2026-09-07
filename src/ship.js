@@ -40,11 +40,11 @@ class Gameboard {
     }
     #loadBoard() {
         let board = {}
-        const columns = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+        const columns = ["A", "B", "C", "D", "E", "F", "G", "H"]
 
         for (let column of columns) {
             board[column] = {}
-            for (let row=1; row<=10; row++) {
+            for (let row=1; row<=8; row++) {
                 board[column][row] = null
             }
         }
@@ -62,21 +62,21 @@ class Gameboard {
 
 
     placeShip(ship, x, y) {
-        if (x < "A" || x > "J") {
-            throw new Error("Out of bound coordinates")
+        if (x < "A" || x > "H") {
+            return
         }
-        if (y < 1 || y > 10) {
-            throw new Error("Out of bound coordinates")
+        if (y < 1 || y > 8) {
+            return
         }
         if (ship.rotation === "V") {
             if (y - ship.size + 1 < 1) {
-                throw new Error("Out of bound coordinates")
+                return
             }
         }
         if (ship.rotation === "H") {
             const column = x.charCodeAt(0) - "A".charCodeAt(0) + 1
-            if (column + ship.size - 1 > 10) {
-                throw new Error("Out of bound coordinates")
+            if (column + ship.size - 1 > 8) {
+                return
             }
         }
 
@@ -97,11 +97,11 @@ class Gameboard {
     }
 
     receiveAttack(x, y) {
-        if (x < "A" || x > "J") {
-            throw new Error("Out of bound coordinates")
+        if (x < "A" || x > "H") {
+            return
         }
-        if (y < 1 || y > 10) {
-            throw new Error("Out of bound coordinates")
+        if (y < 1 || y > 8) {
+            return
         }
         if (this.board[x][y] === "X") {
             return 
@@ -109,7 +109,6 @@ class Gameboard {
 
         if (typeof this.board[x][y] === "object" 
             && this.board[x][y] !== null) {
-            const ship = this.board[x][y]
             this.board[x][y].hit()
             this.board[x][y].isSunk()
             this.board[x][y] = "X"
