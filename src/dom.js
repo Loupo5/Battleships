@@ -6,7 +6,8 @@ import { npcMove } from "./game.js"
 
 
 
-function renderBoard(gameboard, myClass, vulnerable) {
+function renderBoard(player, myClass, vulnerable) {
+    const gameboard = player.gameboard
     const body = document.querySelector("body")
 
     const board = document.createElement("div")
@@ -28,7 +29,6 @@ function renderBoard(gameboard, myClass, vulnerable) {
                 cellUI.addEventListener("click", () => { 
                     if (gameboard.board[column][cell] === "X") return 
                     gameboard.receiveAttack(column, cell)
-                    console.log(gameboard)
                     cellUI.classList.add("attacked")
                     cellUI.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
                     const npcCoords = npcMove(gameboard)
@@ -38,6 +38,7 @@ function renderBoard(gameboard, myClass, vulnerable) {
                     )   
                     npcCell.classList.add("attacked")
                     npcCell.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
+                    console.log(gameboard)
                 })
             }
             

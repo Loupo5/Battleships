@@ -33,5 +33,12 @@ npc.gameboard.ships["Cruiser"].rotate()
 npc.gameboard.placeShip(npc.gameboard.ships.Cruiser, "E", 3)
 npc.gameboard.placeShip(npc.gameboard.ships.Destroyer, "E", 8)
 
-renderBoard(player.gameboard, "player-board", false)
-renderBoard(npc.gameboard, "npc-board", true)
+renderBoard(player, "player-board", false)
+renderBoard(npc, "npc-board", true)
+
+function same() {
+    if (player.gameboard === npc.gameboard) return true
+    return false
+}
+
+console.log(`The boards are same: ${same()}`)
