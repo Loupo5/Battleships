@@ -6,9 +6,8 @@ import { npcMove } from "./game.js"
 
 
 
-function renderBoard(player, myClass, vulnerable) {
-    const gameboard = player.gameboard
-    const body = document.querySelector("body")
+function renderBoard(gameboard, myClass) {
+    const cells = []
 
     const board = document.createElement("div")
     board.classList.add("board", myClass)
@@ -20,33 +19,32 @@ function renderBoard(player, myClass, vulnerable) {
             const cellUI = document.createElement("div")
             cellUI.classList.add("cell")
             cellUI.dataset.column = column
-            cellUI.dataset.row = cell
+            cellUI.dataset.cell = cell
+            
             if (gameboard.board[column][cell] instanceof Ship) {
                 cellUI.innerHTML = `<img src="${circleSVG}" height=40px width=40px>`
             }
             columnUI.appendChild(cellUI)
-            if (vulnerable) {
-                cellUI.addEventListener("click", () => { 
+            cells.push(cellUI)
+                /*cellUI.addEventListener("click", () => { 
                     if (gameboard.board[column][cell] === "X") return 
                     gameboard.receiveAttack(column, cell)
                     cellUI.classList.add("attacked")
                     cellUI.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
                     const npcCoords = npcMove(gameboard)
                     gameboard.receiveAttack(npcCoords[0], npcCoords[1])
-                    const npcCell = document.querySelector(
-                    `.cell[data-column="${npcCoords[0]}"][data-row="${npcCoords[1]}"]`
-                    )   
+                    
                     npcCell.classList.add("attacked")
                     npcCell.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
                     console.log(gameboard)
-                })
-            }
+                })*/
+            
             
         }
         board.appendChild(columnUI)
     }
-    body.appendChild(board)
-    return board
+    document.body.appendChild(board)
+    return cells
 }
 
 

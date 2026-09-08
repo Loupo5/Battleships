@@ -1,5 +1,6 @@
 import { Player, Gameboard, Ship } from "./script.js";
 import { renderBoard } from "./dom.js";
+import xSVG from "./svgs/x.svg"
 
 const player = new Player("Luke", new Gameboard())
 const npc = new Player("NPC", new Gameboard())
@@ -33,12 +34,34 @@ npc.gameboard.ships["Cruiser"].rotate()
 npc.gameboard.placeShip(npc.gameboard.ships.Cruiser, "E", 3)
 npc.gameboard.placeShip(npc.gameboard.ships.Destroyer, "E", 8)
 
-renderBoard(player, "player-board", false)
-renderBoard(npc, "npc-board", true)
+const playerCells = renderBoard(player.gameboard, "player-board")
+const npcCells = renderBoard(npc.gameboard, "npc-board")
 
-function same() {
-    if (player.gameboard === npc.gameboard) return true
-    return false
+function npcListener(gameboard) {
+    npcCells.forEach((cell) => {
+    cell.addEventListener("click", () => {
+        const column = cell.dataset.column
+        const row = cell.dataset.cell
+
+        if (gameboard.board[column][row] === "X") return 
+            gameboard.receiveAttack(column, row)
+            cell.classList.add("attacked")
+            cell.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
+
+            const npcCoords = npcMove(gameboard)
+            player.gameboard.receiveAttack(npcCoords[0], npcCoords[1])
+            
+            const playerCell = playerCells.find((cell) => {
+                return cell.dataset.column === npcCoords[0] &&
+                       cell.dataset.cell === String(npcCoords[1])
+            })
+
+            playerCell.classList.add("attacked")
+            playerCell.innerHTML = `<img src="${xSVG}" height=35px width=35px>`
+    })
+})
 }
+npcListener(npc.gameboard)
 
-console.log(`The boards are same: ${same()}`)
+
+
