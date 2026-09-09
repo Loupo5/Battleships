@@ -1,5 +1,5 @@
 import "./style.css"
-import { game } from "./game.js"
+import { Game } from "./game.js"
 import { Player, Gameboard } from "./script.js"
 import { renderBoard } from "./dom.js"
 
@@ -23,5 +23,7 @@ npc.gameboard.placeShip(npc.gameboard.ships.Destroyer, "E", 8)
 const playerCells = renderBoard(player.gameboard, "player-board", true)
 const npcCells = renderBoard(npc.gameboard, "npc-board")
 
-game(npc.gameboard, player.gameboard, npcCells, playerCells)
+const game = new Game(npc.gameboard, player.gameboard, npcCells, playerCells)
+
+game.play()
 

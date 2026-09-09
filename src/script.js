@@ -109,12 +109,19 @@ class Gameboard {
 
         if (typeof this.board[x][y] === "object" 
             && this.board[x][y] !== null) {
-            this.board[x][y].hit()
-            this.board[x][y].isSunk()
+            const ship = this.board[x][y]
+            ship.hit()
+            ship.isSunk()
+
             this.board[x][y] = "X"
         } else {
             this.board[x][y] = "X"
         }
+    }
+
+    resetBoard() {
+        this.board = this.#loadBoard
+        this.ships = this.#loadShips
     }
 }
 
